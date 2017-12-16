@@ -1,0 +1,92 @@
+<h2>This is survey component.</h2>
+<h6>Survey is confidential, takes 1 minute.</h6>
+<div class="container col-sm-6">
+    <form method="post" action="/survey">
+        <label>What is your household income per year in CAD?</label>
+        <div class="form-group input-icon">
+            <input class="form-control" type="number" [(ngModel)]="newSurvey.income" name="income" #income="ngModel" required/>
+            <div *ngIf="!hide_validation">
+                <div *ngIf="income.errors" class="alert-danger">
+                    <div [hidden]="!income.errors.required">
+                        Income input is required
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <label>How old are you?</label>
+        <div class="form-group input-icon">
+            <input class="form-control" type="number" [(ngModel)]="newSurvey.age" name="age" #age="ngModel" required/>
+            <div *ngIf="!hide_validation">
+                <div *ngIf="age.errors" class="alert-danger">
+                    <div [hidden]="!age.errors.required">
+                        Age input is required
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <label>What is your purpose to use the service? (ie.children's education funding, retirement plan)</label>
+        <div class="form-group input-icon">
+            <select class="form-control" [(ngModel)]="newSurvey.purpose" name="purpose" #purpose="ngModel" required>
+                <option value="children" selected>Child Education Fund</option>
+                <option value="retirement">Retirement Plan</option>
+                <option value="anti_inflation">Win out inflation</option>
+                <option value="Others">Others</option>
+            </select>
+            <div *ngIf="!hide_validation">
+                <div *ngIf="purpose.errors" class="alert-danger">
+                    <div [hidden]="!purpose.errors.required">
+                        Please select a purpose of your investment
+                    </div>
+                </div>
+            </div>
+        </div>
+        <label>Where do you hear about our services?</label>
+        <div class="form-group input-icon">
+            <select class="form-control" [(ngModel)]="newSurvey.source" name="source" #source="ngModel" required>
+                <option value="friend_family" selected>Friends and families</option>
+                <option value="ads">advertisement</option>
+                <option value="online">discussion online</option>
+                <option value="bychance">Just saw it somewhere</option>
+                <option value="Others">Others</option>
+            </select>
+            <div *ngIf="!hide_validation">
+                <div *ngIf="source.errors" class="alert-danger">
+                    <div [hidden]="!source.errors.required">
+                        Please select a source
+                    </div>
+                </div>
+            </div>
+        </div>
+        <label>What is your expectation of the rate of return, in percentage a year?</label>
+        <div class="form-group input-icon">
+            <input class="form-control" type="number" [(ngModel)]="newSurvey.ror" name="ror" #ror="ngModel" required/>
+            <div *ngIf="!hide_validation">
+                <div *ngIf="ror.errors" class="alert-danger">
+                    <div [hidden]="!ror.errors.required">
+                        Rate of return input is required
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <label>Do you describe yourself as a risk averted person? check if Yes.</label>
+        <div class="form-group input-icon">
+            <input type="checkbox" [(ngModel)]="newSurvey.risk_aversion" name="risk_aversion" />Yes
+        </div>
+
+
+        <label>Do you need a mobile version of our services? check if Yes.</label>
+        <div class="form-group input-icon">
+            <input type="checkbox" [(ngModel)]="newSurvey.mobile" name="mobile" />Yes
+        </div>
+
+        <div class="form-group input-icon">
+            <button class="btn btn-default" (click)="validate()">Submit</button>
+        </div>
+    </form>
+
+
+</div>

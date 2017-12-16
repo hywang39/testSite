@@ -1,0 +1,136 @@
+<div class="row">
+        <div class="container col-md-3">
+                <h3>Interest Calculator:</h3>
+
+                <form id="interest_calculator_form">
+                        <label>Starting Principal</label>
+                        <div class="form-group input-icon">
+                                <i>$</i>
+                                <input class="form-control" type="number" [(ngModel)]="principal" name="principal" />
+                        </div>
+
+
+                        <!-- https://stackoverflow.com/questions/2913236/html-text-input-field-with-currency-symbol  -->
+
+
+                        <label>Contribution per compound period</label>
+                        <div class="form-group input-icon">
+                                <i>$</i>
+                                <input class="form-control" [(ngModel)]="contribution" name="contribution" type="number" />
+                        </div>
+                        <label>Interest Rate</label>
+
+                        <div class="form-group input-icon input-icon-right">
+                                <i>%</i>
+                                <input class="form-control" type="number" [(ngModel)]="interest_rate" name="interest_rate" />
+                        </div>
+
+
+
+                        <label>Maturity</label>
+                        <div class="form-group input-icon input-icon-right">
+                                <i>Yrs</i>
+                                <input class="form-control" type="number" [(ngModel)]="maturity" name="maturity" />
+                        </div>
+
+
+                        <label>Tax Rate</label>
+                        <div class="form-group  input-icon input-icon-right">
+                                <i>%</i>
+                                <input class="form-control" type="number" [(ngModel)]="tax_rate" name="tax_rate" />
+                        </div>
+
+                        <label>Inflation Rate</label>
+                        <div class="form-group input-icon input-icon-right">
+                                <i>%</i>
+                                <input class="form-control" type="number" [(ngModel)]="inflation_rate" name="inflation_rate" />
+                        </div>
+
+                        <label>Compound</label>
+                        <div class="form-group">
+                                <select class="form-control" id="compound_selection" [(ngModel)]="compound" name="compound">
+                                        <option value="annually">annually</option>
+                                        <option value="semiannually">semiannually</option>
+                                        <option value="quarterly">quarterly</option>
+                                        <option value="monthly">monthly</option>
+                                        <option value="biweekly">biweekly</option>
+                                        <option value="weekly">weekly</option>
+                                        <option value="daily">daily</option>
+                                </select>
+
+                        </div>
+
+                        <label>Contribute at</label>
+                        <div class="form-group">
+                                <select class="form-control" id="contribution_time" [(ngModel)]="contribution_time" name="contribution_time">
+                                        <option value="beginning">beginning</option>
+                                        <option value="end">end</option>
+                                </select>
+                                <p> of each compounding period</p>
+                                <button class="btn btn-default" (click)="calculate_and_plot()">Calculate</button>
+                        </div>
+
+                </form>
+        </div>
+
+        <div class="container col-md-9">
+
+                <div class="row">
+                        <div class="col-sm-3 col-sm-offset-1">
+                                <h2>Result</h2>
+                                <table>
+                                        <tr>
+                                                <td>
+                                                        <label>End Balance</label>
+                                                </td>
+                                                <td>
+                                                        <input type="number" [(ngModel)]="end_balance" name="end_balance" disabled/>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td>
+                                                        <label>After Inflation Adjustment</label>
+                                                </td>
+                                                <td>
+                                                        <input type="number" [(ngModel)]="inflation_adjusted_balanace" name="inflation_adjusted_balanace" disabled/>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td>
+                                                        <label>Total Principle</label>
+                                                </td>
+                                                <td>
+                                                        <input type="number" [(ngModel)]="total_principal" name="total_principal" disabled/>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td>
+                                                        <label>Total Interest</label>
+                                                </td>
+                                                <td>
+                                                        <input type="number" [(ngModel)]="interest_amount" name="interest_amount" disabled/>
+                                                </td>
+                                        </tr>
+
+                                </table>
+
+                        </div>
+                        <div class="col-sm-3 col-sm-offset-1">
+                                <pie-chart [dataset]="break_down_percentage" [test]="test">
+                                </pie-chart>
+                                <!-- this is important to bind value from parent to child -->
+
+                        </div>
+
+                </div>
+
+                <div class="row">
+                        <div class="container col-sm-9">
+
+                                <line-chart></line-chart>
+                        </div>
+                </div>
+
+        </div>
+
+</div>

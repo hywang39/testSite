@@ -1,0 +1,26 @@
+<h2>This is analytics component.</h2>
+
+<h5>This section displays anonymous survey results in the database</h5>
+<table class="table" border="1">
+    <tr>
+        <th>Income</th>
+        <th>Age</th>
+        <th>Source</th>
+        <th>Purpose</th>
+        <th>Expected ROR</th>
+        <th>Risk Aversion</th>
+        <th>Mobile</th>
+    
+    </tr>
+    <tr *ngFor="let survey of surveys | async">
+        <td>{{ survey.income }}</td>
+        <td>{{ survey.age }}</td>
+        <td>{{ survey.source }}</td>
+        <td>{{ survey.purpose }}</td>
+        <td>{{ survey.ror }}</td>
+        <td>{{ survey.risk_aversion }}</td>
+        <td>{{ survey.mobile }}</td>
+    <!--  <td><button class="btn btn-default" (click)="deleteBadData(survey)">delete</button></td>       -->
+    </tr>
+</table>
+
